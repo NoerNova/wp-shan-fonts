@@ -1,0 +1,11 @@
+/*
+Font Name: Shan
+Weights: 100, 200, 300, 400, 500, 600, 700, 800
+*/
+@font-face {
+  font-family: "Shan";
+  src: url("Shan.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: fallback;
+}
