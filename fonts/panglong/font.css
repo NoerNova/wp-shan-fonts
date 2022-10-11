@@ -1,11 +1,14 @@
 /*
-Font Name: Shan
+Font Name: Panglong[Latest]
 Weights: 100, 200, 300, 400, 500, 600, 700, 800
 */
+
 @font-face {
-  font-family: "panglong";
-  src: url("panglong.woff") format("woff");
-  font-weight: 100;
+  font-family: "PangLong";
+  src: url("PangLong.woff2") format("woff2"),
+    url("PangLong.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
+  font-display: swap;
   font-display: fallback;
 }

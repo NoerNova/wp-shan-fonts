@@ -159,7 +159,7 @@ function shan_fonts_init() { ?>
 	}
 	?>
     <p>
-        <?php printf( wp_kses( __( 'This plugin allows you to use Google fonts, bundled Thai fonts, or your own custom fonts. For more information, please visit <a href="%1$s" target="_blank">shan Fonts by shanwebs.com</a>', 'shan-fonts' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://docs.shanwebs.com/category/91-shan-fonts' ) ); ?>
+        <?php printf( wp_kses( __( 'This plugin for easy using Shan\'s fonts in wordpress. For more information, please visit <a href="%1$s" target="_blank">shan Fonts by shanfont.com</a>', 'shan-fonts' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://shanfont.com/' ) ); ?>
     </p>
     <form action="<?php echo admin_url( 'options.php' ); ?>" method="post" id="shan-fonts-form">
         <div id="shan-fonts-tabs">
@@ -237,6 +237,10 @@ function shan_fonts_get_fonts() {
 		"Shan" => array(
 			"font" => "Shan",
 			"weights" => array(400, 600, 900)
+		),
+		"NamKhone" => array(
+			"font" => "NamKhone",
+			"weights" => array(400)
 		)
 	);
 
@@ -404,7 +408,7 @@ function shan_fonts_get_header_settings() {
 					'id'      => shan_fonts_get_option_id( 'google_font_name' ),
 					'title'   => esc_html__( 'Google Font Name', 'shan-fonts' ),
 					'type'    => 'text',
-					'desc'    => wp_kses( sprintf( __( 'Use font name from <a href="%1$s" target="_blank">fonts.google.com</a>, such as <b>Roboto</b>, <b>Open Sans</b> (case-sensitive).', 'shan-fonts' ), esc_url( 'https://fonts.google.com/' ) ), array(
+					'desc'    => wp_kses( sprintf( __( 'Use font name from <a href="%1$s" target="_blank">fonts.google.com</a>, such as <b>Noto Sans Myanmar</b>, <b>Noto Serif Myanmar</b> (case-sensitive).', 'shan-fonts' ), esc_url( 'https://fonts.google.com/' ) ), array(
 						'a' => array(
 							'href'   => array(),
 							'target' => array()
