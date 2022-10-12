@@ -5,10 +5,8 @@ Weights: 100, 200, 300, 400, 500, 600, 700, 800
 
 @font-face {
   font-family: "PangLong";
-  src: url("PangLong.woff2") format("woff2"),
-    url("PangLong.woff") format("woff");
+  src: url("PangLong.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
   font-display: fallback;
 }

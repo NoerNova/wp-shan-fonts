@@ -7,6 +7,5 @@ Weights: 100, 200, 300, 400, 500, 600, 700, 800
   src: url("Shan.woff2") format("woff2"), url("Shan.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
   font-display: fallback;
 }

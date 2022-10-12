@@ -1,4 +1,29 @@
 <?php
+/*
+Plugin Name: WP Shan Fonts
+Plugin URI: https://wordpress.org/plugins/wp-shan-fonts/
+Description: Enable web fonts on Appearance -> Fonts. You can use Google Fonts, Bundled fonts or add your own by <a href="https://docs.seedwebs.com/article/90-upload-custom-fonts" target="_blank">uploading your web fonts to the theme folder</a>.
+Version: 0.10.0
+Author: Shan Fonts
+Author URI: https://shanfont.com
+License: GPL2
+Text Domain: wp-shan-fonts
+*/
+
+/*
+Copyright 2022 Shan Fonts  (email : info@shanfont.com)
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as 
+published by the Free Software Foundation.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
 add_action( 'wp_enqueue_scripts', 'shan_fonts_scripts', 30);
 add_action( 'enqueue_block_editor_assets', 'shan_fonts_scripts', 30);
 
@@ -32,10 +57,6 @@ function shan_fonts_scripts() {
 			$font_styles = $admin_head_selectors . $selectors;
 			
 		$other_font = ',sans-serif';
-		if($font == 'noto-sans-thai')
-			$other_font = ',noto-sans,sans-serif';
-		if($font == 'noto-serif-thai')
-			$other_font = ',noto-serif,sans-serif';
 
 		$font_family = '"' . $font . '"' . $other_font . ( $is_important ? ' !important' : '' );
 		$font_styles .= '{font-family: '. $font_family . ';';
@@ -114,7 +135,7 @@ function shan_fonts_scripts() {
 		$body_font_styles .= '}';
 
 		if( $body_is_google_font ) {
-			if( $body_weight != '' )				
+			if( $body_weight != '' )
 				wp_enqueue_style( 'shan-fonts-body-all', 'https://fonts.googleapis.com/css?family='.$body_font.':'.$body_weight, false );
 			else
 				wp_enqueue_style( 'shan-fonts-body-all', 'https://fonts.googleapis.com/css?family='.$body_font, false );
@@ -135,21 +156,21 @@ function shan_fonts_scripts() {
 add_action( 'admin_menu', 'shan_fonts_setup_menu' );
 
 function shan_fonts_setup_menu() {
-	$shan_font_page = add_submenu_page ( 'themes.php', __( 'shan Fonts', 'shan-fonts' ), __( 'Fonts', 'shan-fonts' ), 'manage_options', 'shan-fonts', 'shan_fonts_init' );
+	$shan_font_page = add_submenu_page ( 'themes.php', __( 'Shan Fonts', 'shan-fonts' ), __( 'Shan Fonts', 'shan-fonts' ), 'manage_options', 'shan-fonts', 'shan_fonts_init' );
 
 	add_action( 'load-' . $shan_font_page, 'shan_fonts_admin_styles' );
 }
 
 function shan_fonts_admin_styles() {
-	wp_enqueue_style( 'shan-fonts', plugin_dir_url( __FILE__ ) . 'shan-fonts-admin.css' , array(), '2018-1' );
-	wp_enqueue_script( 'shan-fonts', plugin_dir_url( __FILE__ ) . 'shan-fonts-admin.js' , array( 'jquery', 'jquery-ui-tabs' ), '2018-1', true );
+	wp_enqueue_style( 'shan-fonts', plugin_dir_url( __FILE__ ) . 'shan-fonts-admin.css' , array(), '2022-10' );
+	wp_enqueue_script( 'shan-fonts', plugin_dir_url( __FILE__ ) . 'shan-fonts-admin.js' , array( 'jquery', 'jquery-ui-tabs' ), '2022-10', true );
 }
 
 function shan_fonts_init() { ?>
 
 <div class="wrap">
     <div class="icon32" id="icon-options-general"></div>
-    <h2><?php esc_html_e( 'shan Fonts', 'shan-fonts' ); ?></h2>
+    <h2><?php esc_html_e( 'Shan Fonts', 'shan-fonts' ); ?></h2>
 
     <?php
 	if( isset( $_GET['settings-updated'] ) ) {
@@ -227,12 +248,11 @@ function shan_fonts_hidden_weight_options() {
  * @return array
  */
 function shan_fonts_get_fonts() {
-	$loop = __(' (Thai Loop)', 'shan-fonts');
 
 	$fonts = array(
 		"Panglong" => array(
-			"font"    => "panglong",
-			"weights" => array( 400 )
+			"font"    => "Panglong",
+			"weights" => array(400, 600, 900)
 		),
 		"Shan" => array(
 			"font" => "Shan",
@@ -240,7 +260,7 @@ function shan_fonts_get_fonts() {
 		),
 		"NamKhone" => array(
 			"font" => "NamKhone",
-			"weights" => array(400)
+			"weights" => array(400, 600, 900)
 		)
 	);
 
@@ -280,7 +300,7 @@ function shan_fonts_get_fonts() {
 		}
 	}
 
-	return apply_filters( 'shan_fonts_fonts', $fonts );
+	return apply_filters( 'shan_fonts_font', $fonts );
 
 }
 

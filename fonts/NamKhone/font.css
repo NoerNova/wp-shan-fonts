@@ -9,6 +9,5 @@ Weights: 100, 200, 300, 400, 500, 600, 700, 800
     url("NamKhone.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
   font-display: fallback;
 }

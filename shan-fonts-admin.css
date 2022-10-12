@@ -1,4 +1,4 @@
-#seed-fonts-tabs h2 {
+#shan-fonts-tabs h2 {
   display: none;
 }
 .ui-tabs-nav {
@@ -29,7 +29,7 @@
   text-decoration: none;
   box-shadow: none !important;
 }
-#seed-fonts-tabs .ui-tabs-nav > li.ui-state-active > a {
+#shan-fonts-tabs .ui-tabs-nav > li.ui-state-active > a {
   border-bottom: 1px solid #f1f1f1;
   background: #f1f1f1;
   color: #000;
@@ -39,7 +39,7 @@
   color: #444;
 }
 
-#seed-fonts-body-size,
-#seed-fonts-body-lineheight {
+#shan-fonts-body-size,
+#shan-fonts-body-lineheight {
   width: 50px;
 }
