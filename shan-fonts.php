@@ -41,6 +41,7 @@ function shan_fonts_scripts() {
 	$is_enabled = ( get_option( 'shan_fonts_is_enabled' ) );
 	$is_google_font = ( get_option( 'shan_fonts_is_google_fonts' ) );
 	$weight = get_option( 'shan_fonts_weight' );
+	$lineheight = get_option( 'shan_fonts_lineheight' );
 	$selectors = get_option( 'shan_fonts_selectors' );
 	$is_important = ( get_option( 'shan_fonts_is_important' ) );
 	$font_styles = '';
@@ -53,8 +54,9 @@ function shan_fonts_scripts() {
 
 	if( $is_enabled && ( $font !== FALSE ) && ( $font != '' ) ) {
 
-		if( $selectors != '' )
+		if( $selectors != '' ) {
 			$font_styles = $admin_head_selectors . $selectors;
+		}
 			
 		$other_font = ',sans-serif';
 
@@ -62,10 +64,15 @@ function shan_fonts_scripts() {
 		$font_styles .= '{font-family: '. $font_family . ';';
 		if( $weight != '' )
 			$font_styles .= ' font-weight: '.$weight.( $is_important ? ' !important' : '' ).';';
+		if ( $lineheight != '' ) {
+			$font_styles .= ' line-height: '.$lineheight.( $is_important ? ' !important' : '').';';
+		}
 		$font_styles .= ' }';
 
 		// Add CSS Var
-		$font_styles .= 'body {--s-heading:' . $font_family . '}';
+		$font_styles .= 'body {--s-heading:' . $font_family . ';';
+		$font_styles .= '--s-heading-line-height:' . $lineheight . ';';
+		$font_styles .= '}';
 		$font_styles .= 'body {--s-heading-weight:' . $weight . '}';
 
 		if( $is_google_font ) {
@@ -109,12 +116,6 @@ function shan_fonts_scripts() {
 			$body_font_styles = $admin_body_selectors . $body_selectors;
 		}
 		$body_other_font = ',sans-serif';
-		if($body_font == 'noto-sans-thai') {
-			$body_other_font = ',noto-sans,sans-serif';
-		}
-		if($body_font == 'noto-serif-thai') {
-			$body_other_font = ',noto-serif,sans-serif';
-		}
 		
 		$body_font_family = '"' . $body_font . '"' . $body_other_font . ( $body_is_important ? ' !important' : '' );
 		$body_font_styles .= '{font-family: '. $body_font_family . ';';
@@ -228,7 +229,7 @@ function shan_fonts_hidden_weight_options() {
 	}
 
 	echo '<select id="shan-fonts-all-weights" style="display:none">
-	<option value=""></option>
+	<option value="">Default</option>
 	<option value="100">Thin 100</option>
 	<option value="200">Extra Light 200</option>
 	<option value="300" selected="selected">Light 300</option>
@@ -335,7 +336,7 @@ function shan_fonts_get_fonts_weights_option_list( $font , $is_google_fonts) {
 	$font = shan_fonts_get_font( $font );
 	if ( ($is_google_fonts) || (! isset( $font['weights'] )) || empty( $font['weights'] ) ) {
 		return array(
-			'' => '',
+			'' => 'Default',
 			100 => 'Thin 100',
 			200 => 'Extra Light 200',
 			300 => 'Light 300',
@@ -355,7 +356,6 @@ function shan_fonts_get_fonts_weights_option_list( $font , $is_google_fonts) {
 	}
 
 	return $list;
-
 }
 
 /**
@@ -451,6 +451,13 @@ function shan_fonts_get_header_settings() {
 					'options' => shan_fonts_get_fonts_weights_option_list( get_option( 'shan_fonts_font' ) , get_option( 'shan_fonts_is_google_fonts' ))
 				),
 				array(
+					'id'      => shan_fonts_get_option_id( 'lineheight' ),
+					'title'   => esc_html__( 'Line Height', 'shan-fonts' ),
+					'type'    => 'text',
+					'desc'    => esc_html__( '1.5-1.8 is recommended.', 'shan-fonts' ),
+					'default' => '1.6'
+				),
+				array(
 					'id'      => shan_fonts_get_option_id( 'selectors' ),
 					'title'   => esc_html__( 'Selectors', 'shan-fonts' ),
 					'type'    => 'text',
@@ -511,7 +518,7 @@ function shan_fonts_get_body_settings() {
 					'id'      => shan_fonts_get_option_id( 'body_google_font_name' ),
 					'title'   => esc_html__( 'Google Font Name', 'shan-fonts' ),
 					'type'    => 'text',
-					'desc'    => wp_kses( sprintf( __( 'Use font name from <a href="%1$s" target="_blank">fonts.google.com</a>, such as <b>Roboto</b>, <b>Open Sans</b> (case-sensitive).', 'shan-fonts' ), esc_url( 'https://fonts.google.com/' ) ), array(
+					'desc'    => wp_kses( sprintf( __( 'Use font name from <a href="%1$s" target="_blank">fonts.google.com</a>, such as <b>Noto Sans Myanmar</b>, <b>Noto Serif Myanmar</b> (case-sensitive).', 'shan-fonts' ), esc_url( 'https://fonts.google.com/' )  ), array(
 						'a' => array(
 							'href'   => array(),
 							'target' => array()
@@ -531,11 +538,7 @@ function shan_fonts_get_body_settings() {
 					'title'   => esc_html__( 'Weight', 'shan-fonts' ),
 					'desc'    => esc_html__( 'Many fonts have only Regular (400), not Light (300).', 'shan-fonts' ),
 					'type'    => 'dropdown',
-					'options' => array(
-						'' => '',
-						300 => 'Light 300',
-						400 => 'Regular 400',
-					)
+					'options' => shan_fonts_get_fonts_weights_option_list( get_option( 'shan_fonts_body_font' ), get_option( 'shan_fonts_body_is_google_fonts' ))
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_size' ),
@@ -563,7 +566,7 @@ function shan_fonts_get_body_settings() {
 					'title'   => esc_html__( 'Selectors', 'shan-fonts' ),
 					'type'    => 'text',
 					'desc'    => esc_html__( 'Separate selectors with commas', 'shan-fonts' ),
-					'default' => 'body'
+					'default' => 'body, ul, ol, li, img, div, blockquote, button, canvas, caption, code, data, dd, del, details, dialog, dl, element, em, footer, form, hr, i, nav, q, span, a, input, hr, quote, table, p, pre, kbd, tt, var, samp, select, textarea, optgroup, details, progress, main'
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_is_important' ),

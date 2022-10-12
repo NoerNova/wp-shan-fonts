@@ -10,6 +10,7 @@ jQuery(document).ready(function ($) {
     inputFonts = $("#shan-fonts-font"),
     inputImportant = $("#shan-fonts-is-important"),
     inputFontWeight = $("#shan-fonts-weight"),
+    inputLineheight = $("#shan-fonts-lineheight"),
     inputBodyEnable = $("#shan-fonts-body-is-enabled"),
     inputBodyCSS = $("#shan-fonts-body-css-generated"),
     inputBodySelectors = $("#shan-fonts-body-selectors"),
@@ -43,6 +44,12 @@ jQuery(document).ready(function ($) {
       css +=
         "  font-weight: " +
         inputFontWeight.val() +
+        (inputImportant.prop("checked") ? " !important" : "") +
+        ";\n";
+    if (inputLineheight.val() != null && inputLineheight.val() != "")
+      css +=
+        "  line-height: " +
+        inputLineheight.val() +
         (inputImportant.prop("checked") ? " !important" : "") +
         ";\n";
     css += "}";
@@ -97,6 +104,7 @@ jQuery(document).ready(function ($) {
     inputGoogleFonts.prop("disabled", !is_enabled);
     inputGoogleFontName.prop("disabled", !is_enabled);
     inputFontWeight.prop("disabled", !is_enabled);
+    inputLineheight.prop("disabled", !is_enabled);
     inputSelectors.prop("disabled", !is_enabled);
     inputImportant.prop("disabled", !is_enabled);
     inputCSS.toggle(is_enabled);
@@ -146,13 +154,29 @@ jQuery(document).ready(function ($) {
 
   function shan_fonts_body_is_google_fonts() {
     var body_is_googlefonts = inputBodyGoogleFonts.prop("checked");
+    var body_weight = $("#shan-fonts-body-weight").val();
+    var body_font = inputBodyFonts.val();
     if (body_is_googlefonts) {
       $("#shan-fonts-body-google-font-name").closest("tr").show();
       $("#shan-fonts-body-font").closest("tr").hide();
+      inputBodyFonts
+        .empty()
+        .append($("#shan-fonts-all-weights").children().clone())
+        .val(body_weight);
     } else {
       $("#shan-fonts-body-google-font-name").closest("tr").hide();
       $("#shan-fonts-body-font").closest("tr").show();
+      inputBodyWeight
+        .empty()
+        .append(
+          $("#shan-fonts-" + body_font + "-body-weights")
+            .children()
+            .clone()
+        )
+        .val(body_weight);
     }
+    if (inputFontWeight.val() == null)
+      $("shan-fonts-body-weight option:first").arrt("selected", "selected");
   }
 
   /* Trigger functions when DOM is ready */
@@ -193,6 +217,10 @@ jQuery(document).ready(function ($) {
     if (inputFontWeight.val() == null)
       $("#shan-fonts-weight option:first").attr("selected", "selected");
 
+    shan_fonts_generate_css();
+  });
+
+  inputLineheight.on("keyup focusout", function () {
     shan_fonts_generate_css();
   });
 
