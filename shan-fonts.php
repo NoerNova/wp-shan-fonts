@@ -252,8 +252,12 @@ function shan_fonts_get_fonts() {
 
 	$fonts = array(
 		"Panglong" => array(
-			"font"    => "Panglong",
+			"font" => "Panglong",
 			"weights" => array(400, 600, 900)
+		),
+		"PangLongLatest" => array(
+			"font" => "PanglongLatest",
+			"weights" => array(400)
 		),
 		"Shan" => array(
 			"font" => "Shan",
@@ -262,6 +266,14 @@ function shan_fonts_get_fonts() {
 		"NamKhone" => array(
 			"font" => "NamKhone",
 			"weights" => array(400, 600, 900)
+		),
+		"NamTeng" => array(
+			"font" => "NamTeng",
+			"weights" => array(400, 600, 900)
+		),
+		"GreatHorKham_Taunggyi" => array(
+			"font" => "GreatHorKham_Taunggyi",
+			"weights" => array(400)
 		)
 	);
 
