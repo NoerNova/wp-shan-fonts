@@ -1,7 +1,6 @@
 jQuery(document).ready(function ($) {
   $("#shan-fonts-tabs").tabs();
 
-  /* Cache selectors */
   var inputEnable = $("#shan-fonts-is-enabled"),
     inputCSS = $("#shan-fonts-css-generated"),
     inputSelectors = $("#shan-fonts-selectors"),
@@ -24,7 +23,6 @@ jQuery(document).ready(function ($) {
     inputBodyImportant = $("#shan-fonts-body-is-important"),
     formshanFonts = $("#shan-fonts-form");
 
-  /* Function to ouput CSS */
   function shan_fonts_generate_css() {
     var css = "";
     var ggfont = inputGoogleFontName.val();
@@ -96,7 +94,6 @@ jQuery(document).ready(function ($) {
     inputBodyCSS.val(css);
   }
 
-  /* Conditional Logic */
   function shan_fonts_is_enabled() {
     var is_enabled = inputEnable.prop("checked");
 
@@ -179,7 +176,6 @@ jQuery(document).ready(function ($) {
       $("shan-fonts-body-weight option:first").arrt("selected", "selected");
   }
 
-  /* Trigger functions when DOM is ready */
   shan_fonts_generate_css();
   shan_fonts_body_generate_css();
   shan_fonts_is_enabled();
@@ -187,7 +183,6 @@ jQuery(document).ready(function ($) {
   shan_fonts_body_is_enabled();
   shan_fonts_body_is_google_fonts();
 
-  /* If using Google Fonts */
   inputGoogleFonts.on("change", function () {
     shan_fonts_is_google_fonts();
     shan_fonts_generate_css();
@@ -197,7 +192,6 @@ jQuery(document).ready(function ($) {
     shan_fonts_body_generate_css();
   });
 
-  /* Output CSS live */
   inputEnable.on("change", function () {
     shan_fonts_is_enabled();
   });

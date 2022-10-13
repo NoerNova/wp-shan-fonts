@@ -1,17 +1,17 @@
 <?php
 /*
 Plugin Name: WP Shan Fonts
-Plugin URI: https://wordpress.org/plugins/wp-shan-fonts/
-Description: Enable web fonts on Appearance -> Fonts. You can use Google Fonts, Bundled fonts or add your own by <a href="https://docs.seedwebs.com/article/90-upload-custom-fonts" target="_blank">uploading your web fonts to the theme folder</a>.
+Plugin URI: https://github.com/NoerNova/wp-shan-fonts
+Description: Enable web fonts on Appearance -> Shan Fonts. Google Fonts are support such as Noto Sans Myanmar or Noto Serif Myanmar, Download more fonts at <a href="https://shanfont.com" target="_blank"></a>.
 Version: 0.10.0
 Author: Shan Fonts
-Author URI: https://shanfont.com
+Author URI: https://noernova.com
 License: GPL2
 Text Domain: wp-shan-fonts
 */
 
 /*
-Copyright 2022 Shan Fonts  (email : info@shanfont.com)
+Copyright 2022 Shan Fonts  (email : noernova666@gmail.com)
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
 published by the Free Software Foundation.
@@ -46,6 +46,7 @@ function shan_fonts_scripts() {
 	$is_important = ( get_option( 'shan_fonts_is_important' ) );
 	$font_styles = '';
 
+	// Support for Google Noto Fonts
 	if($is_google_font) {
 		$font = preg_replace('!\s+!', ' ', get_option( 'shan_fonts_google_font_name' ));
 	} else {
@@ -69,26 +70,19 @@ function shan_fonts_scripts() {
 		}
 		$font_styles .= ' }';
 
-		// Add CSS Var
 		$font_styles .= 'body {--s-heading:' . $font_family . ';';
 		$font_styles .= '--s-heading-line-height:' . $lineheight . ';';
 		$font_styles .= '}';
 		$font_styles .= 'body {--s-heading-weight:' . $weight . '}';
 
 		if( $is_google_font ) {
-			if( $weight != '' )				
+			if( $weight != '' )
 				wp_enqueue_style( 'shan-fonts-all', 'https://fonts.googleapis.com/css?family='.$font.':'.$weight, false ); 
 			else
 				wp_enqueue_style( 'shan-fonts-all', 'https://fonts.googleapis.com/css?family='.$font, false ); 
 		} else {
-			$upload_dir = wp_upload_dir();
-			if( file_exists( get_stylesheet_directory() . '/vendor/fonts/' . $font ) && is_dir( get_stylesheet_directory() . '/vendor/fonts/' . $font ) ) {
-				wp_enqueue_style( 'shan-fonts-all', get_stylesheet_directory_uri() . '/vendor/fonts/' . $font . '/font.css' , array(  ) );
-			} elseif( file_exists( $upload_dir['basedir'] . '/fonts/'  . $font ) && is_dir( $upload_dir['basedir'] . '/fonts/' . $font ) ) {
-				wp_enqueue_style( 'shan-fonts-all', $upload_dir['baseurl'] . '/fonts/'  . $font . '/font.css' , array(  ) );
-			} else {
-				wp_enqueue_style( 'shan-fonts-all', plugin_dir_url( __FILE__ ) . 'fonts/' . $font . '/font.css' , array(  ) );
-			}
+			// Font Dir (Case Sensitive)
+			wp_enqueue_style( 'shan-fonts-all', plugin_dir_url( __FILE__ ) . 'fonts/' . $font . '/font.css' , array(  ) );
 		}
 
 		wp_add_inline_style( 'shan-fonts-all', $font_styles );
@@ -130,7 +124,6 @@ function shan_fonts_scripts() {
 		}
 		$body_font_styles .= ' }';
 
-		// Add CSS Var
 		$body_font_styles .= 'body {--s-body:' . $body_font_family . ';';
 		$body_font_styles .= '--s-body-line-height:' . $body_lineheight . ';';
 		$body_font_styles .= '}';
@@ -141,14 +134,7 @@ function shan_fonts_scripts() {
 			else
 				wp_enqueue_style( 'shan-fonts-body-all', 'https://fonts.googleapis.com/css?family='.$body_font, false );
 		} else {
-			$upload_dir = wp_upload_dir();
-			if( file_exists( get_stylesheet_directory() . '/vendor/fonts/' . $body_font ) && is_dir( get_stylesheet_directory() . '/vendor/fonts/' . $body_font ) ) {
-				wp_enqueue_style( 'shan-fonts-body-all', get_stylesheet_directory_uri() . '/vendor/fonts/' . $body_font . '/font.css' , array(  ) );
-			} elseif( file_exists( $upload_dir['basedir'] . '/fonts/' . $body_font ) && is_dir( $upload_dir['basedir'] . '/fonts/' . $body_font ) ) {
-				wp_enqueue_style( 'shan-fonts-body-all', $upload_dir['baseurl'] . '/fonts/' . $body_font . '/font.css' , array(  ) );
-			} else {
-				wp_enqueue_style( 'shan-fonts-body-all', plugin_dir_url( __FILE__ ) . 'fonts/' . $body_font . '/font.css' , array(  ) );
-			}
+			wp_enqueue_style( 'shan-fonts-body-all', plugin_dir_url( __FILE__ ) . 'fonts/' . $body_font . '/font.css' , array(  ) );
 		}
 		wp_add_inline_style( 'shan-fonts-body-all', $body_font_styles );
 	}
@@ -181,7 +167,7 @@ function shan_fonts_init() { ?>
 	}
 	?>
     <p>
-        <?php printf( wp_kses( __( 'This plugin for easy using Shan\'s fonts in wordpress. For more information, please visit <a href="%1$s" target="_blank">shan Fonts by shanfont.com</a>', 'shan-fonts' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://shanfont.com/' ) ); ?>
+        <?php printf( wp_kses( __( 'A wordpress plugins for easily used of shan-fonts by <a href="%1$s" target="_blank">shanfont.com</a>', 'shan-fonts' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ), esc_url( 'https://shanfont.com/' ) ); ?>
     </p>
     <form action="<?php echo admin_url( 'options.php' ); ?>" method="post" id="shan-fonts-form">
         <div id="shan-fonts-tabs">
@@ -208,7 +194,7 @@ function shan_fonts_init() { ?>
 <?php }
 
 /**
- * Put font weight options
+ * Font weight options
  *
  * @since 0.10.0
  */
@@ -243,7 +229,7 @@ function shan_fonts_hidden_weight_options() {
 }
 
 /**
- * Get the list of bundled fonts
+ * Get bundled fonts list
  *
  * @since 0.10.0
  * @return array
@@ -257,7 +243,7 @@ function shan_fonts_get_fonts() {
 		),
 		"PangLongLatest" => array(
 			"font" => "PanglongLatest",
-			"weights" => array(400)
+			"weights" => array(400, 600, 900)
 		),
 		"Shan" => array(
 			"font" => "Shan",
@@ -273,45 +259,9 @@ function shan_fonts_get_fonts() {
 		),
 		"GreatHorKham_Taunggyi" => array(
 			"font" => "GreatHorKham_Taunggyi",
-			"weights" => array(400)
+			"weights" => array(400, 600, 900)
 		)
 	);
-
-	// This is where we add custom fonts
-	if ( file_exists( get_stylesheet_directory() . '/vendor/fonts' ) && is_dir( get_stylesheet_directory() . '/vendor/fonts' ) ) {
-		$d_handle = opendir( get_stylesheet_directory() . '/vendor/fonts' );
-		while ( false !== ( $entry = readdir( $d_handle ) ) ) {
-			if ( is_dir( get_stylesheet_directory() . '/vendor/fonts/' . $entry ) && ( file_exists( get_stylesheet_directory() . '/vendor/fonts/' . $entry . '/font.css' ) ) ) {
-				$headers = get_file_data( get_stylesheet_directory() . '/vendor/fonts/' . $entry . '/font.css', array(
-					'font'    => 'Font Name',
-					'weights' => 'Weights'
-				) );
-				$_font = array(
-					'font'    => empty( $headers['font'] ) ? $entry : $headers['font'],
-					'weights' => empty( $headers['weights'] ) ? array() : array_map( 'trim', explode( ',', $headers['weights'] ) ),
-				);
-				$fonts[ $entry ] = $_font;
-			}
-		}
-	}
-	// add more custom fonts from /upload/fonts/
-	$upload_dir = wp_upload_dir();
-	if ( file_exists( $upload_dir['basedir'] . '/fonts/' ) && is_dir( $upload_dir['basedir'] . '/fonts/' ) ) {
-		$d_handle = opendir( $upload_dir['basedir'] . '/fonts/'  );
-		while ( false !== ( $entry = readdir( $d_handle ) ) ) {
-			if ( is_dir( $upload_dir['basedir'] . '/fonts/'  . $entry ) && ( file_exists( $upload_dir['basedir'] . '/fonts/'  . $entry . '/font.css' ) ) ) {
-				$headers = get_file_data( $upload_dir['basedir'] . '/fonts/'  . $entry . '/font.css', array(
-					'font'    => 'Font Name',
-					'weights' => 'Weights'
-				) );
-				$_font = array(
-					'font'    => empty( $headers['font'] ) ? $entry : $headers['font'],
-					'weights' => empty( $headers['weights'] ) ? array() : array_map( 'trim', explode( ',', $headers['weights'] ) ),
-				);
-				$fonts[ $entry ] = $_font;
-			}
-		}
-	}
 
 	return apply_filters( 'shan_fonts_font', $fonts );
 
@@ -396,10 +346,8 @@ function shan_fonts_get_font( $font ) {
 }
 
 /**
- * Quick helper function that prefixes an option ID
+ * helper function to prefixes an option ID
  *
- * This makes it easier to maintain and makes it super easy to change the options prefix without breaking the options
- * registered with the Settings API.
  *
  * @since 0.10.0
  *
@@ -451,22 +399,22 @@ function shan_fonts_get_header_settings() {
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'font' ),
-					'title'   => esc_html__( 'Bundled Font', 'shan-fonts' ),
+					'title'   => esc_html__( 'Shan\'s Font', 'shan-fonts' ),
 					'type'    => 'dropdown',
 					'options' => shan_fonts_get_fonts_option_list()
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'weight' ),
 					'title'   => esc_html__( 'Weight', 'shan-fonts' ),
-					'desc'    => esc_html__( 'Many fonts have only Regular (400) and Bold (700).', 'shan-fonts' ),
+					'desc'    => esc_html__( 'Many Shan\'s fonts have only Regular (400).', 'shan-fonts' ),
 					'type'    => 'dropdown',
 					'options' => shan_fonts_get_fonts_weights_option_list( get_option( 'shan_fonts_font' ) , get_option( 'shan_fonts_is_google_fonts' ))
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'lineheight' ),
-					'title'   => esc_html__( 'Line Height', 'shan-fonts' ),
+					'title'   => sprintf(esc_html__( 'Line Height %s(တၢင်းၵႂၢင်ႈ တႂ်ႈ - ၼိူဝ် ထႅဝ်လိၵ်ႈ)', 'shan-fonts' ), '<br>'),
 					'type'    => 'text',
-					'desc'    => esc_html__( '1.5-1.8 is recommended.', 'shan-fonts' ),
+					'desc'    => esc_html__( '1.5 - 1.8 is recommended.', 'shan-fonts' ),
 					'default' => '1.6'
 				),
 				array(
@@ -541,14 +489,14 @@ function shan_fonts_get_body_settings() {
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_font' ),
-					'title'   => esc_html__( 'Bundled Font', 'shan-fonts' ),
+					'title'   => esc_html__( 'Shan\'s Font', 'shan-fonts' ),
 					'type'    => 'dropdown',
 					'options' => shan_fonts_get_fonts_option_list(),
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_weight' ),
 					'title'   => esc_html__( 'Weight', 'shan-fonts' ),
-					'desc'    => esc_html__( 'Many fonts have only Regular (400), not Light (300).', 'shan-fonts' ),
+					'desc'    => esc_html__( 'Many Shan\'s fonts have only Regular (400).', 'shan-fonts' ),
 					'type'    => 'dropdown',
 					'options' => shan_fonts_get_fonts_weights_option_list( get_option( 'shan_fonts_body_font' ), get_option( 'shan_fonts_body_is_google_fonts' ))
 				),
@@ -568,9 +516,9 @@ function shan_fonts_get_body_settings() {
 				
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_lineheight' ),
-					'title'   => esc_html__( 'Line Height', 'shan-fonts' ),
+					'title'   => sprintf(esc_html__( 'Line Height %s(တၢင်းၵႂၢင်ႈ တႂ်ႈ - ၼိူဝ် ထႅဝ်လိၵ်ႈ)', 'shan-fonts' ), '<br>'),
 					'type'    => 'text',
-					'desc'    => esc_html__( '1.5-1.8 is recommended.', 'shan-fonts' ),
+					'desc'    => esc_html__( '1.5 - 1.8 is recommended.', 'shan-fonts' ),
 					'default' => '1.6'
 				),
 				array(
@@ -578,7 +526,7 @@ function shan_fonts_get_body_settings() {
 					'title'   => esc_html__( 'Selectors', 'shan-fonts' ),
 					'type'    => 'text',
 					'desc'    => esc_html__( 'Separate selectors with commas', 'shan-fonts' ),
-					'default' => 'body, ul, ol, li, blockquote, button, canvas, caption, code, data, dd, del, details, dialog, dl, element, em, footer, form, hr, i, nav, q, span, a, input, hr, quote, table, p, pre, kbd, tt, var, samp, select, textarea, optgroup, details, progress, main'
+					'default' => 'body, ul, ol, li, blockquote, button, canvas, span, caption, code, data, dd, del, details, dialog, dl, element, em, footer, form, hr, i, nav, q, span, a, input, hr, quote, table, p, pre, kbd, tt, var, samp, select, textarea, optgroup, details, progress, main'
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_is_important' ),
@@ -616,10 +564,8 @@ function shan_fonts_register_plugin_settings() {
 
 	foreach ( $header_settings as $key => $section ) {
 
-		/* We add the sections and then loop through the corresponding options */
 		add_settings_section( $section['id'], $section['title'], 'shan_fonts_section', 'shan-fonts' );
 
-		/* Get the options now */
 		foreach ( $section['options'] as $k => $option ) {
 
 			$field_args = array(
@@ -642,10 +588,8 @@ function shan_fonts_register_plugin_settings() {
 
 	foreach ( $body_settings as $key => $section ) {
 
-		/* We add the sections and then loop through the corresponding options */
 		add_settings_section( $section['id'], $section['title'], 'shan_fonts_section', 'shan-fonts' );
 
-		/* Get the options now */
 		foreach ( $section['options'] as $k => $option ) {
 
 			$field_args = array(
@@ -697,7 +641,6 @@ function shan_fonts_output_settings_field( $option ) {
 	$field_type = $option['type'];
 	$id         = str_replace( '_', '-', $option['name'] );
 
-	// Because disabling the options when "Enable" is unchecked saved empty values we need to make sure the default is taken into account
 	if ( empty( $current ) && ! empty( $option['default'] ) ) {
 		$current = $option['default'];
 	}
