@@ -1,4 +1,5 @@
 # WP Shan Fonts
+A wordpress plugins for easily used of shan-fonts.
 
 ### Installation
 1. Download [wp-shan-fonts.zip](https://github.com/NoerNova/wp-shan-fonts/releases/download/beta0.10.0/wp-shan-fonts.zip) file.
