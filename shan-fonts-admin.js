@@ -159,7 +159,7 @@ jQuery(document).ready(function ($) {
     if (body_is_googlefonts) {
       $("#shan-fonts-body-google-font-name").closest("tr").show();
       $("#shan-fonts-body-font").closest("tr").hide();
-      inputBodyFonts
+      inputBodyWeight
         .empty()
         .append($("#shan-fonts-all-weights").children().clone())
         .val(body_weight);
@@ -169,7 +169,7 @@ jQuery(document).ready(function ($) {
       inputBodyWeight
         .empty()
         .append(
-          $("#shan-fonts-" + body_font + "-body-weights")
+          $("#shan-fonts-" + body_font + "-weights")
             .children()
             .clone()
         )
