@@ -2,10 +2,10 @@
 /*
 Plugin Name: WP Shan Fonts
 Plugin URI: https://github.com/NoerNova/wp-shan-fonts
-Description: Enable web fonts on Appearance -> Shan Fonts. Google Fonts are support such as Noto Sans Myanmar or Noto Serif Myanmar, Download more fonts at <a href="https://shanfont.com" target="_blank"></a>.
+Description: Enable Shan fonts on Appearance -> Shan Fonts. Google Fonts are support such as Noto Sans Myanmar or Noto Serif Myanmar, Download more fonts at <a href="https://shanfont.com" target="_blank">shanfont.com</a>.
 Version: 0.10.0
 Author: Shan Fonts
-Author URI: https://noernova.com
+Author URI: https://shanfont.com
 License: GPL2
 Text Domain: wp-shan-fonts
 */
