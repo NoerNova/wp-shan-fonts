@@ -68,7 +68,8 @@ jQuery(document).ready(function ($) {
       '  font-family: "' +
       (inputBodyGoogleFonts.prop("checked") ? ggfont : inputBodyFonts.val()) +
       '", san-serif' +
-      (inputBodyImportant.prop("checked") ? " !important" : "") +
+      // (inputBodyImportant.prop("checked") ? " !important" : "") +
+      " !important" +
       ";\n";
     if (inputBodySize.val() != null && inputBodySize.val() != "")
       css +=

@@ -111,7 +111,8 @@ function shan_fonts_scripts() {
 		}
 		$body_other_font = ',sans-serif';
 		
-		$body_font_family = '"' . $body_font . '"' . $body_other_font . ( $body_is_important ? ' !important' : '' );
+		// $body_font_family = '"' . $body_font . '"' . $body_other_font . ( $body_is_important ? ' !important' : '' );
+		$body_font_family = '"' . $body_font . '"' . $body_other_font . ' !important';
 		$body_font_styles .= '{font-family: '. $body_font_family . ';';
 		if( $body_weight != '' ) {
 			$body_font_styles .= ' font-weight: '.$body_weight.( $body_is_important ? ' !important' : '' ).';';
@@ -504,7 +505,7 @@ function shan_fonts_get_body_settings() {
 					'id'      => shan_fonts_get_option_id( 'body_size' ),
 					'title'   => esc_html__( 'Size', 'shan-fonts' ),
 					'type'    => 'text',
-					'default' => '16'
+					'default' => '15'
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_size_unit' ),
