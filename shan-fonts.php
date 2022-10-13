@@ -526,7 +526,7 @@ function shan_fonts_get_body_settings() {
 					'title'   => esc_html__( 'Selectors', 'shan-fonts' ),
 					'type'    => 'text',
 					'desc'    => esc_html__( 'Separate selectors with commas', 'shan-fonts' ),
-					'default' => 'body, span, a'
+					'default' => 'body, span, a, p'
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_is_important' ),
