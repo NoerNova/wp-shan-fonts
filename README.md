@@ -2,13 +2,14 @@
 A wordpress plugins for easily used of shan-fonts.
 
 ### Installation
-1. Download [wp-shan-fonts.zip](https://github.com/NoerNova/wp-shan-fonts/releases/download/beta0.10.0/wp-shan-fonts.zip) file.
+1. Download [wp-shan-fonts.zip](https://github.com/NoerNova/wp-shan-fonts/releases/download/v0.10.0-beta.2/wp-shan-fonts.zip) file.
 2. Go to wp-admin --> Plugins
 3. On the head click ```Add New```
 4. On the head click ```Upload Plugin```
 5. Choose File --> ```wp-shan-fonts.zip```
-6. Wait for Installation Complete and then
-7. Click activate plugins
+6. Click ```Install Now```
+7. Wait for Installation Complete and then
+8. Click activate plugins
 
 ---
 ### Basic Settings
@@ -20,7 +21,7 @@ A wordpress plugins for easily used of shan-fonts.
 ---
 ### Available Fonts
 1. Shan's fonts
-  - [x] Panglong (Custom), ***114BK***
+  - [x] Panglong (Custom), ***114KB***
   - [x] PanglongLatest,  ***295KB ~ 543KB***
   - [x] Shan, ***70KB ~ 102KB***
   - [x] NamKhone, ***103KB ~ 166KB***
