@@ -24,9 +24,9 @@ A wordpress plugins for easily used of shan-fonts.
 1. Heading
    
    Selector:
-   ```h1, h2, h3:not(.tdm-fancy-title), h4, h5, h6, nav, .nav, .menu, button, .button, .btn, .price, ._heading, .wp-block-pullquote blockquote, blockquote, label, legend```
+   ```h1, h2, h3, h4, h5, h6, nav, .nav, .menu, button, .button, .btn, .price, ._heading, .wp-block-pullquote blockquote, blockquote, label, legend, .entry-title, h3>a```
 
-   ![Screen Shot 2565-10-17 at 12 09 48](https://user-images.githubusercontent.com/9565672/196094094-250e6f42-15b7-42c9-b2d0-acfab6fd554f.png)
+   ![Screen Shot 2565-10-17 at 14 41 28](https://user-images.githubusercontent.com/9565672/196117876-5b9d30af-55e6-46b5-9d95-ba62eb7e4a09.png)
 
 
 2. Body
