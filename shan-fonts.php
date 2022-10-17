@@ -59,7 +59,7 @@ function shan_fonts_scripts() {
 			$font_styles = $admin_head_selectors . $selectors;
 		}
 			
-		$other_font = ',sans-serif';
+		$other_font = ',Sans-Serif';
 
 		$font_family = '"' . $font . '"' . $other_font . ( $is_important ? ' !important' : '' );
 		$font_styles .= '{font-family: '. $font_family . ';';
@@ -109,7 +109,7 @@ function shan_fonts_scripts() {
 		if( $body_selectors != '' ) {
 			$body_font_styles = $admin_body_selectors . $body_selectors;
 		}
-		$body_other_font = ',sans-serif';
+		$body_other_font = ',Sans-Serif';
 		
 		// $body_font_family = '"' . $body_font . '"' . $body_other_font . ( $body_is_important ? ' !important' : '' );
 		$body_font_family = '"' . $body_font . '"' . $body_other_font . ' !important';
@@ -527,7 +527,7 @@ function shan_fonts_get_body_settings() {
 					'title'   => esc_html__( 'Selectors', 'shan-fonts' ),
 					'type'    => 'text',
 					'desc'    => esc_html__( 'Separate selectors with commas', 'shan-fonts' ),
-					'default' => 'body, span, a, p'
+					'default' => 'body, p'
 				),
 				array(
 					'id'      => shan_fonts_get_option_id( 'body_is_important' ),

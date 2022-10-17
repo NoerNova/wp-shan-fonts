@@ -19,6 +19,25 @@ A wordpress plugins for easily used of shan-fonts.
 4. Click ```Save Changes``` on the bottom.
 
 ---
+
+### Custom Selector Settings example
+1. Heading
+   
+   Selector:
+   ```h1, h2, h3:not(.tdm-fancy-title), h4, h5, h6, nav, .nav, .menu, button, .button, .btn, .price, ._heading, .wp-block-pullquote blockquote, blockquote, label, legend```
+
+   ![Screen Shot 2565-10-17 at 12 09 48](https://user-images.githubusercontent.com/9565672/196094094-250e6f42-15b7-42c9-b2d0-acfab6fd554f.png)
+
+
+2. Body
+   
+   Selector:
+   ```body, p, .td-bred-no-url-last, figcaption, .td-excerpt, .td-post-next-prev-content```
+
+   ![Screen Shot 2565-10-17 at 12 10 05](https://user-images.githubusercontent.com/9565672/196094261-a5e1953f-3c69-4151-8abb-b0d6097b4a97.png)
+
+---
+
 ### Available Fonts
 1. Shan's fonts
   - [x] Panglong (Custom), ***114KB***

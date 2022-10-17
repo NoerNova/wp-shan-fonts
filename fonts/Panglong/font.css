@@ -9,4 +9,5 @@ Weights: 100, 200, 300, 400, 500, 600, 700, 800
   font-weight: normal;
   font-style: normal;
   font-display: fallback;
+  unicode-range: U+1000-109F;
 }
